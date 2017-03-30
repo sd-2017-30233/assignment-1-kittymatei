@@ -3,7 +3,7 @@ import DataAccess.*;
 /**
  * Created by Cristina on 3/25/2017.
  */
-public class Admin implements User
+public class AdminService implements User
 {
     public int logIn(String username, String password)
     {

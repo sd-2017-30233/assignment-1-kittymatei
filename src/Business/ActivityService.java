@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Created by Cristina on 3/24/2017.
  */
-public class Activity
+public class ActivityService
 {
     public void addActivity(int idEmployee, String description)
     {

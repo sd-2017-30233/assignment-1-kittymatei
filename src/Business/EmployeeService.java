@@ -3,7 +3,7 @@ import DataAccess.*;
 /**
  * Created by Cristina on 3/22/2017.
  */
-public class Employee implements User
+public class EmployeeService implements User
 {
     public String addEmployee(String name, String username, String password)
     {

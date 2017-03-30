@@ -48,7 +48,7 @@ public class Controller
             {
                 if(comboBox.equals("Admin"))
                 {
-                    Admin a=new Admin();
+                    AdminService a=new AdminService();
                     int id=a.logIn(usr,pwd);
                     if(id==0)
                         JOptionPane.showMessageDialog(null,"Username and/or password wrong!", null, JOptionPane.ERROR_MESSAGE);
@@ -62,7 +62,7 @@ public class Controller
                 }
                 else
                 {
-                    Employee em=new Employee();
+                    EmployeeService em=new EmployeeService();
                     int id=em.logIn(usr,pwd);
                     if(id==0)
                         JOptionPane.showMessageDialog(null,"Username and/or password wrong!", null, JOptionPane.ERROR_MESSAGE);
@@ -111,7 +111,7 @@ public class Controller
                 JOptionPane.showMessageDialog(null,"Empty fields!", null, JOptionPane.ERROR_MESSAGE);
             else
             {
-                Employee em=new Employee();
+                EmployeeService em=new EmployeeService();
                 String msg=em.addEmployee(name,usr,pwd);
                 if(msg.equals("Successful operation!"))
                 {
@@ -136,7 +136,7 @@ public class Controller
                 JOptionPane.showMessageDialog(null,"Empty fields!", null, JOptionPane.ERROR_MESSAGE);
             else
             {
-                Employee em=new Employee();
+                EmployeeService em=new EmployeeService();
                 boolean ok=em.updatePassword(usr,pwd);
                 if(ok)
                 {
@@ -159,7 +159,7 @@ public class Controller
                 JOptionPane.showMessageDialog(null,"Empty field!", null, JOptionPane.ERROR_MESSAGE);
             else
             {
-                Employee em=new Employee();
+                EmployeeService em=new EmployeeService();
                 boolean ok=em.deleteEmployee(name);
                 if(ok)
                 {
@@ -181,7 +181,7 @@ public class Controller
                 JOptionPane.showMessageDialog(null,"Empty field!", null, JOptionPane.ERROR_MESSAGE);
             else
             {
-                Employee em=new Employee();
+                EmployeeService em=new EmployeeService();
                 String msg=em.viewEmployee(name);
                 if(msg!=null)
                 {
@@ -205,7 +205,7 @@ public class Controller
                 JOptionPane.showMessageDialog(null,"Empty fields!", null, JOptionPane.ERROR_MESSAGE);
             else
             {
-                Activity a=new Activity();
+                ActivityService a=new ActivityService();
                 String msg=a.viewActivity(name,from,to);
                 if(msg!=null)
                 {
@@ -232,7 +232,7 @@ public class Controller
                 JOptionPane.showMessageDialog(null,"Empty fields!", null, JOptionPane.ERROR_MESSAGE);
             else
             {
-                Client c=new Client();
+                ClientService c=new ClientService();
                 boolean ok=c.addClient(name,idc,code,addr);
                 if(ok)
                 {
@@ -241,7 +241,7 @@ public class Controller
                     view.tAddClientId.setText("");
                     view.tAddClientCode.setText("");
                     view.tAddClientAddr.setText("");
-                    Activity a=new Activity();
+                    ActivityService a=new ActivityService();
                     a.addActivity(idEmployee,"Add client "+ name);
                 }
                 else
@@ -260,14 +260,14 @@ public class Controller
                 JOptionPane.showMessageDialog(null,"Empty fields!", null, JOptionPane.ERROR_MESSAGE);
             else
             {
-                Client c=new Client();
+                ClientService c=new ClientService();
                 boolean ok=c.updateClientAddress(name,addr);
                 if(ok)
                 {
                     JOptionPane.showMessageDialog(null,"Successful Operation!", null, JOptionPane.INFORMATION_MESSAGE);
                     view.tEditClientName.setText("");
                     view.tEditClientAddr.setText("");
-                    Activity a=new Activity();
+                    ActivityService a=new ActivityService();
                     a.addActivity(idEmployee,"Edit address from client "+ name);
                 }
                 else
@@ -285,7 +285,7 @@ public class Controller
                 JOptionPane.showMessageDialog(null,"Empty field!", null, JOptionPane.ERROR_MESSAGE);
             else
             {
-                Client c=new Client();
+                ClientService c=new ClientService();
                 String msg=c.viewClient(name);
                 if(msg!=null)
                 {
@@ -306,12 +306,12 @@ public class Controller
             if (name.equals("") )
                 JOptionPane.showMessageDialog(null, "Empty field!", null, JOptionPane.ERROR_MESSAGE);
             else {
-                Account ac=new Account();
+                AccountService ac=new AccountService();
                 boolean ok = ac.createAccount(name, comboBox);
                 if (ok) {
                     JOptionPane.showMessageDialog(null, "Successful Operation!", null, JOptionPane.INFORMATION_MESSAGE);
                     view.tAddAccName.setText("");
-                    Activity a = new Activity();
+                    ActivityService a = new ActivityService();
                     a.addActivity(idEmployee, "Create account for client " + name +" of type "+comboBox);
                 } else
                     JOptionPane.showMessageDialog(null, "The client " + name + " does not exist!", null, JOptionPane.ERROR_MESSAGE);
@@ -324,12 +324,12 @@ public class Controller
         public void actionPerformed(ActionEvent e) {
             try {
                 int id = Integer.parseInt(view.tDeleteAccId.getText());
-                Account ac = new Account();
+                AccountService ac = new AccountService();
                 boolean ok = ac.deleteAccount(id);
                 if (ok) {
                     JOptionPane.showMessageDialog(null, "Successful Operation!", null, JOptionPane.INFORMATION_MESSAGE);
                     view.tDeleteAccId.setText("");
-                    Activity a = new Activity();
+                    ActivityService a = new ActivityService();
                     a.addActivity(idEmployee, "Delete account " + id);
                 } else
                     JOptionPane.showMessageDialog(null, "The account " + id + " does not exist!", null, JOptionPane.ERROR_MESSAGE);
@@ -350,7 +350,7 @@ public class Controller
             if (name.equals("") )
                 JOptionPane.showMessageDialog(null, "Empty field!", null, JOptionPane.ERROR_MESSAGE);
             else {
-                Account ac=new Account();
+                AccountService ac=new AccountService();
                 String msg = ac.viewAccount(name);
                 if (msg!=null) {
                     JOptionPane.showMessageDialog(null, "Client name : "+name+" \n\n"+msg, null, JOptionPane.INFORMATION_MESSAGE);
@@ -368,13 +368,13 @@ public class Controller
             try {
                 int id = Integer.parseInt(view.tDepositId.getText());
                 float amount = Float.parseFloat(view.tDepositAmount.getText());
-                Account ac = new Account();
+                AccountService ac = new AccountService();
                 boolean ok = ac.depositAmount(id,amount);
                 if (ok) {
                     JOptionPane.showMessageDialog(null, "Successful Operation!", null, JOptionPane.INFORMATION_MESSAGE);
                     view.tDepositId.setText("");
                     view.tDepositAmount.setText("");
-                    Activity a = new Activity();
+                    ActivityService a = new ActivityService();
                     a.addActivity(idEmployee, "Deposit "+amount+" in account " + id);
                 } else
                     JOptionPane.showMessageDialog(null, "The account " + id + " does not exist!", null, JOptionPane.ERROR_MESSAGE);
@@ -395,14 +395,14 @@ public class Controller
                 int id1 = Integer.parseInt(view.tTransferId1.getText());
                 int id2 = Integer.parseInt(view.tTransferId2.getText());
                 float amount = Float.parseFloat(view.tTransferAmount.getText());
-                Account ac = new Account();
+                AccountService ac = new AccountService();
                 String msg = ac.transferMoney(id1,id2,amount);
                 if (msg.equals("Successful operation!")) {
                     JOptionPane.showMessageDialog(null, msg, null, JOptionPane.INFORMATION_MESSAGE);
                     view.tTransferId1.setText("");
                     view.tTransferId2.setText("");
                     view.tTransferAmount.setText("");
-                    Activity a = new Activity();
+                    ActivityService a = new ActivityService();
                     a.addActivity(idEmployee, "Transfer "+amount+" from account " + id1+" to account "+id2);
                 } else
                     JOptionPane.showMessageDialog(null, msg, null, JOptionPane.ERROR_MESSAGE);
@@ -422,13 +422,13 @@ public class Controller
             try {
                 int id = Integer.parseInt(view.tPayId.getText());
                 float amount = Float.parseFloat(view.tPayAmount.getText());
-                Account ac = new Account();
+                AccountService ac = new AccountService();
                 String msg = ac.processBill(id,amount);
                 if (msg.equals("Successful operation!")) {
                     JOptionPane.showMessageDialog(null, msg, null, JOptionPane.INFORMATION_MESSAGE);
                     view.tPayId.setText("");
                     view.tPayAmount.setText("");
-                    Activity a = new Activity();
+                    ActivityService a = new ActivityService();
                     a.addActivity(idEmployee, "Process bill of "+amount+" from account "+id);
                 } else
                     JOptionPane.showMessageDialog(null, msg, null, JOptionPane.ERROR_MESSAGE);

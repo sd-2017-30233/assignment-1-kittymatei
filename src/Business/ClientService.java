@@ -3,7 +3,7 @@ import DataAccess.*;
 /**
  * Created by Cristina on 3/22/2017.
  */
-public class Client
+public class ClientService
 {
     public boolean addClient(String name, String idCardNumber, String numericalCode, String address)
     {

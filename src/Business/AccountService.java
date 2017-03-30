@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Created by Cristina on 3/22/2017.
  */
-public class Account
+public class AccountService
 {
     public boolean createAccount(String clientName, String type)
     {
